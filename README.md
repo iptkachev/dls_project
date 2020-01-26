@@ -1,2 +1,3 @@
-# dls_project
-Final project of course from DLS.
+# dls_project Segmentation Task with pretrained FCN
+Final project of course from DeepLearningSchool.
+

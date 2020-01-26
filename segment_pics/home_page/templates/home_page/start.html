@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+    <h1 class="display-4">ComputerVision Project</h1>
+    <p class="lead">This is a simple project to test segmentation pictures.</p>
+        <hr class="my-4">
+        <p>Try it now.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'segmentation-pic' %}" role="button">Segmentation</a>
+    </div>
+{% endblock %}

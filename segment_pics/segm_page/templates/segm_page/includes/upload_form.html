@@ -1,0 +1,11 @@
+<h2 id="dropdown-options">
+    <span class="bd-content-title">Segmentation</span>
+</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="custom-file">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block mb-5">Run segmentation</button>
+</form>

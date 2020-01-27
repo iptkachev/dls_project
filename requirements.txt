@@ -14,7 +14,6 @@ boto3==1.9.253
 botocore==1.12.253
 bs4==0.0.1
 cachetools==3.1.1
-catboost==0.17.5
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
@@ -177,6 +176,5 @@ webencodings==0.5.1
 Werkzeug==0.16.0
 widgetsnbextension==3.5.1
 wrapt==1.11.2
-xgboost==0.90
 zict==1.0.0
 zipp==0.6.0

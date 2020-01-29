@@ -20,7 +20,8 @@ class SegmentationPicture(View):
         if bound_form.is_valid():
             image = bound_form.cleaned_data['image']
             image_name = image.name.split('.')[0]
-            or_img = Image.open(image.file).convert('RGB')
+            with Image.open(image.file) as image_file:
+                or_img = image_file.convert('RGB')
             # dl model
             segm_img = model.find_segment(or_img)
             or_img = np.array(resize(or_img))

@@ -14,6 +14,7 @@ class SegmentModel:
     def __init__(self):
         self.resize = 256
         self._model = models.segmentation.fcn_resnet101(pretrained=True).eval()
+        self._model.eval()
 
     def _decode_segmap(self, image, nc=21):
         # Define the helper function
@@ -49,8 +50,9 @@ class SegmentModel:
         return trf(img).unsqueeze(0)
 
     def find_segment(self, img):
-        inp = self._transform(img)
-        out = self._model(inp)['out']
-        out = torch.argmax(out.squeeze(), dim=0).detach().numpy()
-        segmented_img = self._decode_segmap(out)
+        with torch.no_grad():
+            inp = self._transform(img)
+            out = self._model(inp)['out']
+            out = torch.argmax(out.squeeze(), dim=0).detach().numpy()
+            segmented_img = self._decode_segmap(out)
         return segmented_img

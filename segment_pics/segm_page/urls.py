@@ -1,6 +1,8 @@
+from django.urls import path
 from django.conf.urls import url
-from .views import SegmentationPicture
+from .views import SegmentationCreate, SegmentationLoad
 
 urlpatterns = [
-    url('', SegmentationPicture.as_view(), name='segmentation-pic')
+    url('create', SegmentationCreate.as_view(), name='segmentation_create'),
+    path(r'<slug:slug>', SegmentationLoad.as_view(), name='segmentation_load')
 ]

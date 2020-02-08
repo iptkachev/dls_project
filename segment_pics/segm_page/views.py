@@ -15,7 +15,7 @@ class SegmentationCreate(View):
         form = PictureForm()
         return render(request, 'segm_page/upload.html', context={'form': form})
 
-    def post(self, request):
+    def post(self, request, slug=None):
         bound_form = PictureForm(files=request.FILES)
         if bound_form.is_valid():
             image = bound_form.cleaned_data['image']
@@ -33,7 +33,7 @@ class SegmentationCreate(View):
         return render(request, 'segm_page/upload.html', context={'form': bound_form})
 
 
-class SegmentationLoad(View):
+class SegmentationLoad(SegmentationCreate):
     def get(self, request, slug):
         form = PictureForm()
         obj = get_object_or_404(PictureFile, slug=slug)

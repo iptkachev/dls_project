@@ -1,6 +1,6 @@
 from PIL import Image
 import numpy as np
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 from .forms import PictureForm
 from .models import PictureFile
@@ -10,7 +10,7 @@ from .dl_model import SegmentModel, resize
 model = SegmentModel()
 
 
-class SegmentationPicture(View):
+class SegmentationCreate(View):
     def get(self, request):
         form = PictureForm()
         return render(request, 'segm_page/upload.html', context={'form': form})
@@ -29,7 +29,13 @@ class SegmentationPicture(View):
             new_obj = PictureFile(or_image=(image_name, or_img),
                                   segm_image=('segm_' + image_name, segm_img))
             new_obj.save()
-            return render(request, 'segm_page/view_segment.html', context={'form': bound_form,
-                                                                           'content_images': new_obj})
-
+            return redirect(new_obj)
         return render(request, 'segm_page/upload.html', context={'form': bound_form})
+
+
+class SegmentationLoad(View):
+    def get(self, request, slug):
+        form = PictureForm()
+        obj = get_object_or_404(PictureFile, slug=slug)
+        return render(request, 'segm_page/view_segment.html', context={'form': form,
+                                                                       'content_images': obj})

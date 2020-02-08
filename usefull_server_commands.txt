@@ -1,0 +1,17 @@
+netstat -tulpn |grep 80 - view all listening ports
+
+ps aux | grep <pattern>
+
+#supervisor
+supervisorctl reread
+supervisorctl update
+
+#service nginx
+nginx -t - test nginx config
+sudo service nginx status
+sudo service nginx restart
+sudo service nginx start
+sudo service nginx stop
+
+#kill nginx
+sudo pkill -f nginx & wait $!
